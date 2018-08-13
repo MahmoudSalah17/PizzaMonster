@@ -1,0 +1,33 @@
+swarm:
+  deployment:
+    jpa-sample.war:
+      web:
+        login-config:
+          auth-method: BASIC
+          security-domain: my-domain
+        security-constraints:
+          - url-pattern: /PizzaMonster/user/*
+            methods: [GET,PUT, POST, DELETE]
+            roles: [user]
+
+
+  security:
+    security-domains:
+      my-domain:
+        classic-authentication:
+          login-modules:
+            Database:
+              code: Database
+              flag: required
+              module-options:
+                dsJndiName: java:jboss/datasources/restaurantdb
+                principalsQuery: SELECT PASSWORD FROM USERS WHERE USERNAME=?
+                rolesQuery: SELECT ROLE, 'Roles' FROM USERS WHERE USERNAME=?
+
+  datasources:
+    data-sources:
+      restaurantdb:
+        driver-name: mysql
+        connection-url: jdbc:mysql://localhost:3306/restaurantdb
+        user-name: root
+        password: root
