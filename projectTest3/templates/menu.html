@@ -1,0 +1,84 @@
+<div>
+    <div>
+        <div>
+            <nav class="navbar" style="background-color: white;border-right: 0;border-left: 0; border-bottom: 1px  white;margin: 0; border-radius: 0;">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="icon-bar" style="background-color: #FE8A63"></span>
+                            <span class="icon-bar" style="background-color: #FE8A63"></span>
+                            <span class="icon-bar" style="background-color: #FE8A63"></span>
+                        </button>
+                        <div>
+                            <a  class="navbar-brand btn" ng-click="goMain()" style="padding-left: 100px; color: #c61306;font-weight:bold; font-size: 150%">Pizza Monster</a>
+                        </div>
+                    </div>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a class="btn" ng-click="menuRequest()" style="color:#FE8A63;">Menu</a></li>
+                            <!--<li><a href="#" style="color:#FE8A63;"><span class="glyphicon glyphicon-shopping-cart"></span> Cart <span class="badge">{{cartItemsNo}}</span></a></li>-->
+                            <li ng-if="isLogged == false"><a type="button" class="btn" style="color:#FE8A63;" ng-click="signUp()"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                            <li ng-if="isLogged"><a type="button" class="btn" ng-click="signOut()" style="color:#FE8A63;"><span class="glyphicon glyphicon-user"></span>Sign out as {{userName}}</a></li>
+                            <li ng-if="isLogged == false"><a type="button" class="btn" ng-click="login()" style="color:#FE8A63;"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
+                            <li><a ui-sref="help" style="color:#FE8A63;"><span class="glyphicon glyphicon-question-sign"></span> Help</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+<img src="img/menu-banner2.jpg"  style="height: 20%;width: 100%">
+<div style="background-color: #EDEDED; height: 100%">
+    <div class="container-fluid">
+    <div style="background-color: white; float: left;  height: 100%;width: 70%;margin-left: auto;margin-right: auto">
+        <h2 style="text-align: center">Menu</h2>
+        <hr>
+        <div ng-repeat="menuItem in menuItems">
+            <div class="row">
+                <div class="media col-lg-10">
+                    <div class="media-left media-middle">
+                        <img src="{{menuItem.imgUrl}}" class="media-object" style="width:100px">
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">{{menuItem.name}}</h4>
+                        <p>{{menuItem.description}}</p>
+                        <p>Price: {{menuItem.price}}</p>
+                    </div>
+                </div>
+                <div type="button" class="btn col-lg-2" style="max-height:100px; max-width: 100px;" ng-click="addToCart(menuItem)">
+                    <img src="img/cart2.png">
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+
+        <div style="right: 0;position: absolute ;float: right;  height: auto;width: 30%;padding-right: 20px ; max-height: 100%;overflow-y: auto">
+            <div style="background-color: white; height: 100%;">
+                <h2 style="text-align: center;padding-top: 20px">Your Cart</h2>
+                <hr>
+                <div ng-if="cartItems.length === 0">
+                    <h3 style="text-align: center;bottom: 10px;padding: 20%">Your cart is empty</h3>
+                </div>
+
+                <div ng-if="cartItems.length !== 0">
+
+                    <ul class="list-group" ng-repeat="cartItem in cartItems" ng-model="cartItems">
+                        <li class="list-group-item" style="border-radius:0; border: hidden">
+                            <div class="row">
+                                <i type="button" class="btn glyphicon glyphicon-minus col-lg-1" ng-click="decreaseItem(cartItem)"></i>
+                                <p class="col-lg-2" style="font-size: 150%">{{cartItem.amount}}</p>
+                                <p class="col-lg-6" style="font-size: 150%">{{cartItem.name}}</p>
+                                <i type="button" class="btn glyphicon glyphicon-plus col-lg-1" ng-click="increaseItem(cartItem)"></i>
+                            </div>
+                        </li>
+                    </ul>
+                    <h3 style="padding:10px ">Total Price: {{totalPrice}}</h3>
+                    <button type="button" class="btn btn-success btn-block btn-lg" ng-click="checkOut()" style="">Summary and Checkout</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

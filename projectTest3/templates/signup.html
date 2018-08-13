@@ -1,0 +1,63 @@
+<div>
+    <div>
+        <nav class="navbar" style="background-color: white;border-right: 0;border-left: 0; border-bottom: 1px  white;margin: 0; border-radius: 0;">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar" style="background-color: #FE8A63"></span>
+                        <span class="icon-bar" style="background-color: #FE8A63"></span>
+                        <span class="icon-bar" style="background-color: #FE8A63"></span>
+                    </button>
+                    <div>
+                        <a  class="navbar-brand btn" ng-click="goMain()" style="padding-left: 100px; color: #c61306;font-weight:bold; font-size: 150%">Pizza Monster</a>
+                    </div>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a class="btn" ng-click="menuRequest()" style="color:#FE8A63;">Menu</a></li>
+                        <!--<li><a href="#" style="color:#FE8A63;"><span class="glyphicon glyphicon-shopping-cart"></span> Cart <span class="badge">0</span></a></li>-->
+                        <li ng-if="isLogged == false"><a type="button" class="btn" style="color:#FE8A63;" ng-click="signUp()"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                        <li ng-if="isLogged"><a type="button" class="btn" style="color:#FE8A63;" ng-click="signOut()"><span class="glyphicon glyphicon-user"></span>Sign out as {{userName}}</a></li>
+                        <li ng-if="isLogged == false"><a type="button" class="btn" ng-click="login()" style="color:#FE8A63;"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
+                        <li><a ui-sref="help" style="color:#FE8A63;"><span class="glyphicon glyphicon-question-sign"></span> Help</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+<div class="container text-center">
+    <h2>Sign Up</h2>
+    <hr>
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input id="usr" type="text" class="form-control" name="usr" placeholder="Username" ng-model="usrName" required>
+                </div>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                    <input id="phoneNo" type="text" class="form-control" name="phoneNo" placeholder="Phone Number" ng-model="phoneNo" required>
+                </div>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+                    <input id="city" type="text" class="form-control" name="city" placeholder="City" ng-model="city" required>
+                </div>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                    <input id="street" type="text" class="form-control" name="street" placeholder="Street Address" ng-model="streetAddress" required>
+                </div>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <input id="password" type="password" class="form-control" name="password" placeholder="Password " ng-model="password" required>
+                </div>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-repeat"></i></span>
+                    <input id="repPassword" type="password" class="form-control" name="repPassword" placeholder="Repeat Password" ng-model="repeatedPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block" ng-click="submitSignUp()" style="margin-top: 20px">SignUp</button>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+    </div>
+</div>
